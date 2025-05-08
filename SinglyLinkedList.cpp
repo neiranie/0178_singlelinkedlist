@@ -9,7 +9,7 @@ class Node
     Node *next;
 };
 
-class list 
+class List 
 {
     Node *START;
 
@@ -22,7 +22,7 @@ public:
     void addNode()
     {
         int nim;
-        cout << \"Masukkan Nomor Mahasiswa: ";
+        cout << "\nMasukkan Nomor Mahasiswa: ";
         cin >> nim;
 
         Node *nodeBaru = new Node;
@@ -38,6 +38,7 @@ public:
             nodeBaru->next = START;
             return;
         }
+
         Node *previous = START;
         Node *current = START;
         
@@ -46,7 +47,18 @@ public:
             if (nim == current->noMhs)
             {
                 cout << "\nDuplikasi noMhs tidak diijinkan\n";
+                return;
             }
+            previous = current;
+            current = current->next;
         }
+
+        nodeBaru->next = current;
+        previous->next = nodeBaru;
     }
-}
+
+    bool listEmpty()
+    {
+        return START == NULL;
+    }
+};
